@@ -20,11 +20,11 @@ public class BookstoreApplication {
 	            BookStoreRepository bookRepository) { 
 		 return args -> {
 	 
-	           Book book1= new Book("War and Peace","Leo Tolstoy","1895","ISO89564777",456L);
+	           Book book1= new Book("War and Peace","Leo Tolstoy","1895","ISO89564777");
 	           bookRepository.save(book1);
-	           Book book2= new Book("The count of Monte Cristo","Alexander Dumas","1844","ISO89564777",456L);
+	           Book book2= new Book("The count of Monte Cristo","Alexander Dumas","1844","ISO89564777");
 	           bookRepository.save(book2);
-	           Book book3= new Book("Rebecca","Daphne du Maurier","1938","ISO89564777",456L);
+	           Book book3= new Book("Rebecca","Daphne du Maurier","1938","ISO89564777");
 	           bookRepository.save(book3);  
 		 };
 }

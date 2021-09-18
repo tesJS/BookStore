@@ -2,27 +2,49 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+	crossorigin="anonymous">
+
+
 <title>Server Programming</title>
 </head>
 <body>
-
-	<h1>My friends!</h1>	
-	
-	<li th:each="friend: ${friends}" th:text="${friend.name}"> </li>
-	
-		
-	
-<h2>Add New Friend to list</h2>
-	<form action="#" th:action="@{/index/result}" th:object="${friend}" method="get">
-
-		<p>
-			Name: <input type="text" th:field="*{name}" />
-		</p>
-		<p>
-			<input type="submit" value="Submit" />
-		</p>
-	</form>
-
+	<div class="container">
+		<h1>Books</h1>
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th th:text="Author"></th>
+					<th th:text="Title"></th>
+					<th th:text="ISBN"></th>
+					<th th:text="Year"></th>
+					<th th:text="Action"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="book:${books}">
+					<td th:text="${book.author}" />
+					<td th:text="${book.title}" />
+					<td th:text="${book.isbn}" />
+					<td th:text="${book.year}" />
+					<td>
+						 <a class="btn btn-success" th:href="@{/edit(bookid=${book.id})}">Edit</a>
+						 <a	 class="btn btn-danger" th:href="@{/delete(bookid=${book.id})}"> Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br> <a class="btn btn-primary btn-sm" th:href="@{/addbook}">Add
+			Book</a>
+	</div>
 
 </body>
 </html>
