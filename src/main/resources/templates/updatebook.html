@@ -25,7 +25,7 @@
 			method="post">
 
 			<input class="form-control" type="hidden" th:field="*{id}" />
-
+			
 			<p>
 				Author: <input class="form-control" type="text" th:field="*{author}" />
 			</p>
@@ -38,6 +38,15 @@
 			<p>
 				Year: <input class="form-control" type="text" th:field="*{year}" />
 			</p>
+
+			<p>
+				<label for="categorylist">Category</label>
+				 <select id="categorylist"	th:field="*{category}" class="form-control">
+					<option th:each="category: ${categories}"
+						th:value="${category.categoryid}" th:text="${category.name}"></option>
+				</select>
+			</p>
+
 			<input class="btn btn-primary" type="submit" value="Submit" />
 
 		</form>
