@@ -14,6 +14,21 @@
 	crossorigin="anonymous">
 
 <title>Books Directory</title>
+<style>
+.logout{
+position:absolute;
+right:2rem;
+top:0.8rem;
+}
+#logout{
+color:blue;
+width:10rem;
+height:3rem;
+border:2px solid blue;
+border-radius:20%;
+background-color:#ff0;
+}
+</style>
 </head>
 <body>
 <div class="container">
@@ -47,5 +62,11 @@
 	<br>
 	<a th:href="@{/booklist}">Back to Books List</a>
 </div>
+<form class="logout" action="#" th:action="@{/logout}" method="post">
+		
+		<p>
+			<input id="logout" type="submit" value="Logout" />
+		</p>
+	</form>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -12,13 +13,39 @@
 	rel="stylesheet"
 	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
 	crossorigin="anonymous">
+	
+<link href="static/styles/cssandjs/main.css" th:href="@{/styles/cssandjs/main.css}" rel="stylesheet">
 
-
+<style>
+form{
+position:absolute;
+right:2rem;
+top:0.8rem;
+}
+input[type="submit"]{
+color:blue;
+width:10rem;
+height:3rem;
+border:2px solid blue;
+border-radius:20%;
+background-color:#ff0;
+}
+</style>
 <title>Server Programming</title>
 </head>
 <body>
+
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<form action="#" th:action="@{/logout}" method="post">
+		
+		<p>
+			<input  type="submit" value="Logout" />
+		</p>
+	</form>
+<hr>
+
 	<div class="container">
-		<h1>Books</h1>
+		<h2>Books</h2>
 		<table class="table table-bordered table-striped">
 			<thead class="thead-dark">
 				<tr>
@@ -38,8 +65,9 @@
 					<td th:text="${book.year}" />
 					<td th:text="${book.category.name}" />
 					<td>
-						 <a class="btn btn-success" th:href="@{/edit(id=${book.id})}">Edit</a>
-						 <a	 class="btn btn-danger" th:href="@{/delete(id=${book.id})}"> Delete</a>
+						 <a class="btn btn-success" th:href="@{/edit/{id}(id=${book.id})}">Edit</a>
+						 <a	class="btn btn-danger" sec:authorize="hasAuthority('ADMIN')"
+						  th:href="@{/delete/{id}(id=${book.id})}"> Delete</a>
 					</td>
 				</tr>
 			</tbody>
@@ -47,6 +75,7 @@
 		<br> <a class="btn btn-primary btn-sm" th:href="@{/addbook}">Add
 			Book</a>
 	</div>
+	
 
 </body>
 </html>
